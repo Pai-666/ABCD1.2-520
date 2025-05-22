@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>来--任务式</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 响应式容器 */
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 自适应网格布局 */
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: clamp(20px, 3vw, 40px);
+            padding: 30px 0;
+        }
+
+        /* 卡片样式 */
+        .detail-card {
+            border-radius: 12px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .detail-card:hover {
+            transform: translateY(-6px) scale(1.04);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        /* 图片容器 */
+        .detail-image {
+            width: 100%;
+            aspect-ratio: 4/3; /* 固定宽高比 */
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .detail-image img {
+            max-width: 80%;
+            height: auto;
+            transition: transform 0.3s;
+        }
+
+        .detail-card:hover .detail-image img {
+            transform: scale(1.05);
+        }
+
+        /* 文字样式 */
+        .detail-text {
+            padding: clamp(12px, 2vw, 18px);
+            text-align: center;
+            font-size: clamp(14px, 2vw, 18px);
+            transition: all 0.3s;
+            flex-grow: 1;
+        }
+
+        .detail-card:hover .detail-text {
+            color: #22c55e;
+            font-size: clamp(15px, 2.2vw, 20px);
+        }
+
+        /* 响应式标题 */
+        h2 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            padding: clamp(1.5rem, 3vw, 2.5rem) 0;
+        }
+
+        /* 返回按钮 */
+        .back-btn {
+            display: block;
+            width: max-content;
+            margin: 40px auto;
+            padding: 12px 24px;
+            background-color: #2563eb;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .back-btn:hover {
+            background-color: #1d4ed8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="font-bold text-center text-primary">请开始--躺赚吧！</h2>
+		<hr />
+
+        <div class="detail-grid">
+            <div class="detail-card">
+                <div class="detail-image"><img src="趣赚提现1.jpg" alt="提现记录" /></div>
+                <div class="detail-text">交易-记录--哦</div>
+            </div>
+            <div class="detail-card">
+                <div class="detail-image"><img src="趣赚提现2.jpg" alt="提现记录" /></div>
+                <div class="detail-text">交易-记录--哦</div>
+            </div>
+            <div class="detail-card">
+                <div class="detail-image"><img src="趣赚交易细明1.jpg" alt="交易细明" /></div>
+                <div class="detail-text">是-交易-细明</div>
+            </div>
+            <div class="detail-card">
+                <div class="detail-image"><img src="趣赚交易细明2.jpg" alt="交易细明" /></div>
+                <div class="detail-text">是-交易-细明</div>
+            </div>
+			<a href="https://shxmi.qumty.com/hcwusa" class="image-card"> 
+            <div class="detail-card">
+                <div class="detail-image"><img src="趣赚软件码.jpg" alt="软件码" /></div>
+                <div class="detail-text">-上号--来一起--赚米吧-</div>
+            </div>
+        </div>
+
+        <a href="index.html" class="back-btn">返回主界面</a>
+    </div>
+
+    <div id="securityAlert" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-8 bg-primary/90 text-white rounded-3xl text-center hidden max-w-md">
+        <p class="text-2xl font-bold mb-2">这位可爱的朋友，脚本是不能随便查看的哦！</p>
+        <p class="text-base">Hey there, lovely friend! You can't just check the script like that!</p>
+    </div>
+
+    <script>
+        document.addEventListener('contextmenu', e => { e.preventDefault(); document.getElementById('securityAlert').classList.remove('hidden'); });
+        document.addEventListener('keydown', e => { if ([123, 18, 73, 85].includes(e.keyCode)) { e.preventDefault(); document.getElementById('securityAlert').classList.remove('hidden'); } });
+        setTimeout(() => document.getElementById('securityAlert').classList.add('hidden'), 10000);
+    </script>
+	<hr />
+</body>
+</html>

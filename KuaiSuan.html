@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小心僵尸--吃掉你的脑子</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 容器自适应布局 */
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+            min-width: 320px; /* 防止内容过窄 */
+            display: flex;
+            flex-direction: column;
+            gap: 30px; /* 整体间距 */
+        }
+
+        /* 网格布局优化 */
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* 自适应列，最小250px */
+            gap: clamp(20px, 3vw, 30px); /* 动态间距（20-30px，视口宽度3%自适应） */
+            padding: 20px 0;
+        }
+
+        /* 卡片容器 */
+        .detail-card {
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column; /* 图片文字垂直排列 */
+        }
+
+        .detail-card:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 7px 20px rgba(0,0,0,0.15);
+        }
+
+        /* 图片容器 */
+        .detail-image {
+            width: 100%;
+            height: 160px;
+            background: #f5f5f5;
+            color: #999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* 防止图片溢出 */
+            aspect-ratio: 16/9; /* 固定宽高比 */
+        }
+
+        /* 图片标签修复（添加空的图片占位符） */
+        .detail-image img {
+            width: 80%; /* 控制图片在容器内的宽度比例 */
+            height: auto; /* 保持宽高比 */
+            display: block; /* 确保正确渲染 */
+        }
+
+        /* 文字区域 */
+        .detail-text {
+            padding: clamp(10px, 2vw, 15px); /* 响应式内边距 */
+            text-align: center;
+            flex-grow: 1; /* 弹性填充剩余空间 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            font-size: clamp(0.9rem, 2vw, 1.1rem); /* 响应式字体大小 */
+        }
+
+        .detail-card:hover .detail-text {
+            color: #22c55e;
+            font-size: clamp(0.95rem, 2.2vw, 1.2rem); /* 悬停时字体放大 */
+        }
+
+        /* 标题响应式 */
+        h2 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem); /* 标题随窗口缩放 */
+            padding: 1.5rem 0;
+            text-align: center;
+        }
+
+        /* 安全提示优化 */
+        #securityAlert {
+            max-width: 90%;
+            padding: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* 返回按钮 */
+        .back-btn {
+            display: block;
+            text-align: center;
+            margin: 2rem 0;
+            padding: 0.75rem 1.5rem;
+            background-color: #f5f5f5;
+            border-radius: 0.5rem;
+            transition: all 0.3s;
+        }
+
+       ### 问题分析
+
+我检查了代码，发现有几个问题导致图片区域不显示：
+
+1. `<hr />` 和 `<li>` 标签在 `<head>` 和 `<body>` 标签之间，这是无效的HTML结构
+2. 缺少图片标签 `<img>`，只有占位文本 `#`
+3. 安全提示层的样式和脚本需要调整
+
+以下是修复后的完整代码：
+
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>#</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 容器自适应布局 */
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+            min-width: 320px; /* 防止内容过窄 */
+            display: flex;
+            flex-direction: column;
+            gap: 30px; /* 整体间距 */
+        }
+
+        /* 网格布局优化 */
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* 调整最小列宽 */
+            gap: clamp(15px, 3vw, 30px); /* 动态间距 */
+            padding: 20px 0;
+        }
+
+        /* 卡片容器 */
+        .detail-card {
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column; /* 图片文字垂直排列 */
+        }
+
+        .detail-card:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 7px 20px rgba(0,0,0,0.15);
+        }
+
+        /* 图片容器 */
+        .detail-image {
+            width: 100%;
+            height: 160px;
+            background: #f5f5f5;
+            color: #999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* 防止图片溢出 */
+            position: relative;
+        }
+
+        /* 占位图片样式 */
+        .detail-image::before {
+            content: '#';
+            position: absolute;
+            font-size: 1.5rem;
+        }
+
+        /* 文字区域 */
+        .detail-text {
+            padding: clamp(10px, 2vw, 15px); /* 响应式内边距 */
+            text-align: center;
+            flex-grow: 1; /* 弹性填充剩余空间 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            font-size: clamp(0.9rem, 2vw, 1.1rem); /* 响应式字体大小 */
+        }
+
+        .detail-card:hover .detail-text {
+            color: #22c55e;
+            font-size: clamp(0.95rem, 2.2vw, 1.2rem); /* 悬停时字体放大 */
+        }
+
+        /* 标题响应式 */
+        h2 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem); /* 标题随窗口缩放 */
+            padding: 1.5rem 0;
+            text-align: center;
+        }
+
+        /* 安全提示优化 */
+        #securityAlert {
+            max-width: 90%;
+            padding: 1.5rem;
+            font-size: 0.9rem;
+            z-index: 999;
+        }
+
+        /* 返回按钮 */
+        .back-btn {
+            display: block;
+            width: max-content;
+            margin: 40px auto;
+            padding: 12px 24px;
+            background-color: #2563eb;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .back-btn:hover {
+            background-color: #1d4ed8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 返回按钮移到页面顶部 -->
+        <div class="text-center">
+        </div>
+
+        <h2 class="text-2xl font-bold text-center p-5 text-primary">来吧--就是费点脑子而已！</h2>
+		<hr />
+
+        <div class="detail-grid">
+            <!-- 使用正确的图片标签结构 -->
+            <div class="detail-card">
+                <div class="detail-image"><img src="快算交易细明1.jpg" alt="提现记录" /></div>
+                <div class="detail-text">交易-记录--哦</div>
+            </div>
+            <div class="detail-card">
+                <div class="detail-image"><img src="快算交易细明2.jpg" alt="提现记录" /></div>
+                <div class="detail-text">交易-记录--哦</div>
+            </div>
+            <div class="detail-card">
+                <div class="detail-image"><img src="快算交易细明3.jpg" alt="提现记录" /></div>
+                <div class="detail-text">交易-记录--哦</div>
+            </div>
+            <div class="detail-card">
+                <div class="detail-image"><img src="快算交易细明4.jpg" alt="提现记录" /></div>
+                <div class="detail-text">交易-记录--哦</div>
+            </div>
+            <div class="detail-card">
+                <div class="detail-image"><img src="快算金币收益.jpg" alt="交易细明" /></div>
+                <div class="detail-text">是-交易-细明</div>
+            </div>
+			<a href="http://linka.miaomiaoi.com/h5/Download.php?param=942613/com.yiyou.ceping/&open=1" class="image-card"> 
+            <div class="detail-card">
+                <div class="detail-image"><img src="快算软件码.jpg" alt="软件码" /></div>
+                <div class="detail-text">-上号--就差--你了-</div>
+            </div>
+        </div>
+		 <a href="index.html" class="back-btn">返回主界面</a>
+    </div>
+
+    <div id="securityAlert" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-8 bg-primary/90 text-white rounded-3xl text-center hidden">
+        <p class="text-2xl font-bold mb-2">这位可爱的朋友，脚本是不能随便查看的哦！</p>
+        <p class="text-base">Hey there, lovely friend! You can't just check the script like that!</p>
+    </div>
+
+    <script>
+        document.addEventListener('contextmenu', e => { e.preventDefault(); document.getElementById('securityAlert').classList.remove('hidden'); });
+        document.addEventListener('keydown', e => { if ([123, 18, 73, 85].includes(e.keyCode)) { e.preventDefault(); document.getElementById('securityAlert').classList.remove('hidden'); } });
+        setTimeout(() => document.getElementById('securityAlert').classList.add('hidden'), 10000);
+    </script>
+</body>
+</html>

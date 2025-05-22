@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>虚拟--世界 - 教程</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 基础布局配置（与主界面完全一致） */
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+            min-width: 320px; 
+            display: flex;
+            flex-direction: column;
+            gap: 30px; 
+        }
+        
+        /* 响应式网格布局 */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: clamp(20px, 3vw, 50px);
+            padding: clamp(30px, 5vw, 80px) 0;
+        }
+        
+        /* 卡片样式（与主界面完全一致） */
+        .image-card {
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .image-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        /* 图片容器 */
+        .image-container {
+            width: 100%;
+            aspect-ratio: 4/3;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .image-container img {
+            max-width: 80%;
+            height: auto;
+            transition: transform 0.3s;
+        }
+
+        .image-card:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* 文字区域 */
+        .text-placeholder {
+            padding: clamp(15px, 2vw, 25px);
+            text-align: center;
+            font-size: clamp(16px, 2vw, 20px);
+            transition: all 0.3s;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-card:hover .text-placeholder {
+            color: #22c55e;
+            font-size: clamp(17px, 2.2vw, 22px);
+        }
+        
+        /* 标题样式（关键修改：颜色改为黑色） */
+        h1 {
+            font-size: clamp(28px, 5vw, 48px);
+            padding: clamp(20px, 4vw, 40px) 0;
+            text-align: center;
+            color: #000; /* 原为#2563eb（蓝色），现改为黑色 */
+        }
+        
+        /* 返回按钮样式（保持蓝色，如需改黑色可调整此处） */
+        .back-btn {
+            display: block;
+            width: max-content;
+            margin: 40px auto;
+            padding: 12px 24px;
+            background-color: #2563eb;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .back-btn:hover {
+            background-color: #1d4ed8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="font-bold text-center text-primary">软件使用 - 教程</h1>
+
+        <div class="image-grid">
+            <!-- 第1张图片（用#占位） -->
+            <a href="https://kdocs.cn/l/clVjWFm1rCZi" class="image-card"> 
+                <div class="image-container">
+                    <img src="动漫5.jpg" alt="趣味使用" />
+                </div>
+                <div class="text-placeholder">趣味--赚米--的使用方法</div>
+            </a>
+
+            <!-- 第2张图片（用#占位） -->
+            <a href="https://kdocs.cn/l/cnV4LfDi4RLJ" class="image-card"> 
+                <div class="image-container">
+                    <img src="动漫6.jpg" alt="费脑使用方法" />
+                </div>
+                <div class="text-placeholder">费脑--赚米--的使用方法</div>
+            </a>
+        </div>
+
+        <!-- 返回按钮 -->
+        <a href="index.html" class="back-btn">返回主界面</a>
+    </div>
+
+    <!-- 防代码查看提示 -->
+    <div id="securityAlert" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-8 bg-primary/90 text-white rounded-3xl text-center hidden">
+        <p class="text-2xl font-bold mb-2">这位可爱的朋友，脚本是不能随便查看的哦！</p>
+        <p class="text-base">Hey there, lovely friend! You can't just check the script like that!</p>
+    </div>
+
+    <script>
+        // 防查看代码逻辑
+        document.addEventListener('contextmenu', e => { 
+            e.preventDefault(); 
+            document.getElementById('securityAlert').classList.remove('hidden'); 
+        });
+        document.addEventListener('keydown', e => { 
+            if ([123, 18, 73, 85].includes(e.keyCode)) { 
+                e.preventDefault(); 
+                document.getElementById('securityAlert').classList.remove('hidden'); 
+            } 
+        });
+        setTimeout(() => document.getElementById('securityAlert').classList.add('hidden'), 10000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>虚拟--世界</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 所有样式保持不变 */
+        .container { max-width: 1440px; margin: 0 auto; padding: 0 20px; }
+        .image-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(20px, 3vw, 50px); padding: clamp(30px, 5vw, 80px) 0; }
+        .image-card { border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; }
+        .image-card:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+        .image-container { width: 100%; aspect-ratio: 4/3; background: #f5f5f5; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .image-container img { max-width: 80%; height: auto; transition: transform 0.3s; }
+        .image-card:hover img { transform: scale(1.05); }
+        .text-placeholder { padding: clamp(15px, 2vw, 25px); text-align: center; font-size: clamp(16px, 2vw, 20px); transition: all 0.3s; flex-grow: 1; display: flex; align-items: center; justify-content: center; }
+        .image-card:hover .text-placeholder { color: #22c55e; font-size: clamp(17px, 2.2vw, 22px); }
+        h1 { font-size: clamp(28px, 5vw, 48px); padding: clamp(20px, 4vw, 40px) 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="font-bold text-center text-primary">欢迎来到躺赚--世界</h1>
+
+        <div class="image-grid">
+            <!-- 原有第1张图片 -->
+            <a href="QuZhuan.html" target="_blank" class="image-card">
+                <div class="image-container">
+                    <img src="动漫3.png" alt="趣味赚米"/>
+                </div>
+                <div class="text-placeholder">有趣味的--赚米方式</div>
+            </a>
+
+            <!-- 原有第2张图片 -->
+            <a href="KuaiSuan.html" target="_blank" class="image-card">
+                <div class="image-container">
+                    <img src="动漫1.jpg" alt="费脑赚米"/>
+                </div>
+                <div class="text-placeholder">费脑的--米米方式</div>
+            </a>
+
+            <!-- 新增第4张图片（调整至第3位） -->
+            <a href="JiaoCheng.html" target="_blank" class="image-card">
+                <div class="image-container">
+                    <img src="动漫4.jpg" alt="操作教程"/> <!-- 图片路径需替换 -->
+                </div>
+                <div class="text-placeholder">不会操作--请看这里</div> <!-- 文字说明需替换 -->
+            </a>
+
+            <!-- 原有第3张图片（移动至第4位） -->
+            <a href="https://www.baidu.com" target="_blank" class="image-card">
+                <div class="image-container">
+                    <img src="动漫2.jpg" alt="外部链接"/>
+                </div>
+                <div class="text-placeholder">--来外面的世界放松一下吧--</div>
